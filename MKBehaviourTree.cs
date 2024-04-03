@@ -9,6 +9,7 @@ namespace Minikit.BehaviourTree
     {
         public UnityEvent OnStarted = new();
         public UnityEvent OnStopped = new();
+        public UnityEvent<MKBTNode> OnNodeTicked = new();
 
         private MonoBehaviour monoBehaviour;
         private MKBTNode rootNode;

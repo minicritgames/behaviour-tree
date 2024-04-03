@@ -26,9 +26,6 @@ namespace Minikit.BehaviourTree
         /// <returns> The result of this node after ticking </returns>
         public abstract Result Tick();
 
-        public virtual string GetNodeName()
-        {
-            return this.GetType().Name;
-        }
+        public abstract string GetNodeName();
     }
 } // Minikit.BehaviourTree namespace

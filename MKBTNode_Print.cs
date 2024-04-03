@@ -26,6 +26,8 @@ namespace Minikit.BehaviourTree
 
         public override Result Tick()
         {
+            bt.OnNodeTicked.Invoke(this);
+
             switch (logType)
             {
                 case MKBTNode_PrintLogType.Log:
@@ -40,6 +42,11 @@ namespace Minikit.BehaviourTree
             }
 
             return Result.Success;
+        }
+
+        public override string GetNodeName()
+        {
+            return "Print";
         }
     }
 } // Minikit.BehaviourTree namespace

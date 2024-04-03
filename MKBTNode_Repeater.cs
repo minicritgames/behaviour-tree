@@ -17,9 +17,16 @@ namespace Minikit.BehaviourTree
 
         public override Result Tick()
         {
+            bt.OnNodeTicked.Invoke(this);
+
             child.Tick();
 
             return Result.Running;
+        }
+
+        public override string GetNodeName()
+        {
+            return "Repeater";
         }
     }
 } // Minikit.BehaviourTree namespace

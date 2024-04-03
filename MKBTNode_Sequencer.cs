@@ -19,6 +19,8 @@ namespace Minikit.BehaviourTree
 
         public override Result Tick()
         {
+            bt.OnNodeTicked.Invoke(this);
+
             if (currentChildIndex < children.Length)
             {
                 Result result = children[currentChildIndex].Tick();
@@ -49,6 +51,11 @@ namespace Minikit.BehaviourTree
             // If we've made it here, we've ticked all of our children to completion without returning a failure and can return a success
             currentChildIndex = 0;
             return Result.Success;
+        }
+
+        public override string GetNodeName()
+        {
+            return "Sequencer";
         }
     }
 } // Minikit.BehaviourTree namespace

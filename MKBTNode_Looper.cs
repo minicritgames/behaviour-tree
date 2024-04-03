@@ -20,6 +20,8 @@ namespace Minikit.BehaviourTree
 
         public override Result Tick()
         {
+            bt.OnNodeTicked.Invoke(this);
+
             if (currentLoopIndex < numberOfLoops)
             {
                 Result result = child.Tick();
@@ -50,6 +52,11 @@ namespace Minikit.BehaviourTree
             // If we've made it here, we've used all of our loops without returning a failure and can return a success
             currentLoopIndex = 0;
             return Result.Success;
+        }
+
+        public override string GetNodeName()
+        {
+            return "Looper";
         }
     }
 } // Minikit.BehaviourTree namespace

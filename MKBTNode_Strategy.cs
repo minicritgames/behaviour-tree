@@ -27,6 +27,8 @@ namespace Minikit.BehaviourTree
 
         public override Result Tick()
         {
+            bt.OnNodeTicked.Invoke(this);
+
             if (getStrategyFunc == null)
             {
                 return Result.Failure;
@@ -39,6 +41,11 @@ namespace Minikit.BehaviourTree
             }
 
             return getStrategyFunc.Invoke().Tick();
+        }
+
+        public override string GetNodeName()
+        {
+            return $"Strategy ({typeof(T).Name})";
         }
     }
 } // Minikit.BehaviourTree namespace
