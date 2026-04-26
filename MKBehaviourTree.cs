@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,8 +10,9 @@ namespace Minikit.BehaviourTree
         public UnityEvent OnStopped = new();
         public UnityEvent<MKBTNode> OnNodeTicked = new();
 
+        protected MKBTNode rootNode;
+        
         private MonoBehaviour monoBehaviour;
-        private MKBTNode rootNode;
         private Coroutine tickCoroutine;
 
 
@@ -61,6 +61,11 @@ namespace Minikit.BehaviourTree
             }
 
             Stop();
+        }
+
+        public MKBTNode.Result TickOnce()
+        {
+            return rootNode.Tick();
         }
 
         protected abstract MKBTNode CreateNodeTree();
